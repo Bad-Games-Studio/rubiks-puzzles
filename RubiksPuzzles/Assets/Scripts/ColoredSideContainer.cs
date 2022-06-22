@@ -16,16 +16,19 @@ public class ColoredSideContainer : MonoBehaviour
         set => isActive = value;
     }
 
-    private Renderer _renderer;
+    private MeshRenderer _meshRenderer;
+    private Material _material;
 
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _material = _meshRenderer.material;
+        
         UpdateColor(ActiveColor);
     }
 
     private void UpdateColor(Color color)
     {
-        _renderer.material.color = color;
+        _material.color = color;
     }
 }
