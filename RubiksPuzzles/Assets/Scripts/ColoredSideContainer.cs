@@ -2,16 +2,26 @@
 
 public class ColoredSideContainer : MonoBehaviour
 {
-    [SerializeField]
-    private Data.ColoredSide coloredSide;
-    public Color Color => coloredSide.SideColor;
+    [SerializeField] private Data.ColoredSide activeSide;
+    [SerializeField] private Data.ColoredSide inactiveSide;
+
+    [SerializeField] private bool isActive;
+
+    public Color ActiveColor => activeSide.SideColor;
+    public Color InactiveColor => inactiveSide.SideColor;
+    
+    public bool IsActive
+    {
+        get => isActive;
+        set => isActive = value;
+    }
 
     private Renderer _renderer;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        UpdateColor(Color);
+        UpdateColor(ActiveColor);
     }
 
     private void UpdateColor(Color color)
